@@ -29,6 +29,16 @@ datasets/raw/
 *.pth
 *.onnx
 *.safetensors
+*.weights
+*.ckpt
+*.pb
+*.tflite
+*.engine
+*.gguf
+
+# Generated model artifacts
+ai_engine/runs/
+ai_engine/outputs/
 
 # Logs
 *.log
