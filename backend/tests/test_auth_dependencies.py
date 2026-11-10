@@ -1,4 +1,3 @@
-
 from uuid import uuid4
 
 import pytest
@@ -7,10 +6,10 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
 
+from app.api.dependencies import get_current_user
 from app.core.security import hash_password
 from app.core.tokens import create_access_token, create_refresh_token
 from app.database.base import Base
-from app.api.dependencies import get_current_user
 from app.models.user import User
 
 
@@ -22,15 +21,14 @@ def db_session():
         poolclass=StaticPool,
     )
 
-    TestingSessionLocal = sessionmaker(
+    testing_session_local = sessionmaker(
         bind=engine,
         autoflush=False,
         autocommit=False,
     )
 
     Base.metadata.create_all(engine)
-
-    db = TestingSessionLocal()
+    db = testing_session_local()
 
     try:
         yield db
@@ -58,7 +56,6 @@ def create_test_user(db, is_active=True):
 
 def test_valid_access_token_returns_active_user(db_session):
     user = create_test_user(db_session)
-
     token = create_access_token(str(user.id))
 
     authenticated_user = get_current_user(
@@ -71,7 +68,6 @@ def test_valid_access_token_returns_active_user(db_session):
 
 def test_refresh_token_is_rejected(db_session):
     user = create_test_user(db_session)
-
     token = create_refresh_token(str(user.id))
 
     with pytest.raises(HTTPException) as exc:
@@ -82,7 +78,6 @@ def test_refresh_token_is_rejected(db_session):
 
 def test_inactive_user_is_rejected(db_session):
     user = create_test_user(db_session, is_active=False)
-
     token = create_access_token(str(user.id))
 
     with pytest.raises(HTTPException) as exc:
