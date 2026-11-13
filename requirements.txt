@@ -1,0 +1,9 @@
+# Web API foundation only. AI packages already present in the local .venv are
+# intentionally preserved and will be pinned when their features are added.
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.34,<1.0
+SQLAlchemy>=2.0,<3.0
+httpx>=0.27,<1.0
+python-multipart>=0.0.20,<1.0
+lap>=0.5.12,<0.6
+langgraph>=0.6,<1.0

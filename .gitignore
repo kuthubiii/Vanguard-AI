@@ -1,0 +1,51 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.env
+
+# Frontend dependencies and build output
+frontend/node_modules/
+frontend/dist/
+frontend/.env.local
+*.tsbuildinfo
+
+# Local uploaded media and SQLite database
+data/
+
+# Local data and editor files
+outputs/processed/*
+outputs/reports/*
+videos/input/*
+.vscode/
+.idea/
+
+# Environment secrets
+.env.*
+!.env.example
+
+# Python virtual environments
+venv/
+ENV/
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Generated media
+outputs/processed/
+outputs/reports/
+videos/input/
+
+# Video files
+*.mp4
+*.mov
+*.webm
+*.avi
+
+# Logs
+*.log
+
+# Generated output and previews
+outputs/
